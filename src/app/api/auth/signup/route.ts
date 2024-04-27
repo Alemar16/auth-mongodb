@@ -47,7 +47,11 @@ export async function POST(request: Request) {
     console.log(savedUser);
 
     // Devuelve la respuesta JSON con el nuevo usuario guardado
-    return NextResponse.json(savedUser);
+    return NextResponse.json({
+      _id: savedUser._id,
+      fullname: savedUser.fullname,
+      email: savedUser.email,
+    });
   } catch (error) {
     console.log(error);
     if (error instanceof Error) {
