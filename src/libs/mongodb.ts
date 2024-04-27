@@ -3,7 +3,9 @@ import mongoose from "mongoose";
 const { MONGODB_URI } = process.env;
 
 if (!MONGODB_URI) {
-  throw new Error("Please define the MONGODB_URI environment variable inside .env.local");
+  throw new Error(
+    "Please define the MONGODB_URI environment variable inside .env.local"
+  );
 }
 
 export const connectDB = async () => {
@@ -11,10 +13,10 @@ export const connectDB = async () => {
     const { connection } = await mongoose.connect(MONGODB_URI);
     if (connection.readyState === 1) {
       console.log("Connected to MongoDB");
-      return Promise.reject(false);
+      return Promise.resolve(false);
     }
   } catch (error) {
     console.error(error);
     return Promise.reject(true);
   }
-}
+};
