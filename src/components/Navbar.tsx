@@ -15,6 +15,9 @@ async function Navbar() {
           {session ? (
             <>
               <li className="px-3 py-1">
+                <Link href="/about">About</Link>
+              </li>
+              <li className="px-3 py-1">
                 <Link href="/dashboard/profile">Perfil</Link>
               </li>
             </>
