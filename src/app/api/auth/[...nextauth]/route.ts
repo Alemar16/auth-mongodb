@@ -8,6 +8,7 @@ const handler = NextAuth({
   providers: [
     CredentialsProvider({
       name: "Credentials",
+      id: "credentials",
       credentials: {
         email: { label: "Email", type: "email", placeholder: "Email" },
         password: {
@@ -18,7 +19,7 @@ const handler = NextAuth({
       },
       async authorize(credentials, req) {
         await connectDB();
-        console.log(credentials);
+        /*  console.log(credentials); */
 
         const userFound = await User.findOne({
           email: credentials?.email,
@@ -44,14 +45,17 @@ const handler = NextAuth({
       return token;
     },
     async session({ session, token }) {
-      console.log({ session, token });
+      /*    console.log({ session, token }); */
       session.user = token.user as any;
       return session;
     },
   },
   pages: {
     signIn: "/login",
-  }
+  },
+  session: {
+    strategy: "jwt",
+  },
 });
 
 export { handler as GET, handler as POST };
