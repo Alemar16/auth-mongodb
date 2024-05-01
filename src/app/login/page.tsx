@@ -24,7 +24,7 @@ function LoginPage() {
       return;
     }
 
-    if (res?.ok) return router.push("/dashboard");
+    if (res?.ok) return router.push("/dashboard/profile");
 
     console.log(res);
   };
